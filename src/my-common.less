@@ -1,0 +1,232 @@
+@import './my-variable.less';
+
+// 列表、详情页面分区，下方自适应高度
+.my-wrapper {
+  height: 100%;
+  min-width: 1000px;
+  .displayFlex();
+  .flexColumn();
+
+  .my-form-wrapper { // 列表的搜索区域
+    .mySection();
+    margin-bottom: @sectionGutter;
+    padding: @sectionGutter/2 @sectionGutter;
+
+    .my-form-item {
+      margin: @sectionGutter/2 0;
+    }
+  }
+
+  .my-form-wrapper- { // 列表的搜索区域方式2
+    .mySection();
+    margin-bottom: @sectionGutter;
+    padding: @sectionGutter @sectionGutter 0 @sectionGutter;
+  }
+
+  .my-header-wrapper { // 详情的头部区域
+    .mySection();
+    padding-top: @sectionGutter - 4;
+    padding-bottom: @sectionGutter - 8;
+    margin-bottom: @sectionGutter;
+  }
+
+  .my-content-wrapper {
+    .mySection();
+    .flexLengthResponsive();
+  }
+
+}
+
+.my-section {
+  height: 100%;
+  min-width: 1000px;
+  .mySection();
+}
+
+.setCommonModal() {
+  .ant-modal-header {
+    padding-left: @btnGutter;
+  }
+  .ant-modal-body,
+  .ant-modal-footer {
+    padding: @btnGutter;
+  }
+}
+
+// 常规模态框
+.my-modal {
+  .setCommonModal();
+
+  .ant-modal-body {
+    min-height: 300px;
+    max-height: 560px;
+    overflow-y: scroll;
+  }
+}
+
+// 全屏模态框 // todo 这种效果比较好，自适应全屏幕
+.my-full-modal {
+  .setCommonModal();
+  overflow: visible;
+
+  .ant-modal {
+    margin: 0;
+    padding: @sectionGutter*4;
+    height: 100%;
+    top: 0;
+    width: 100% !important;
+    max-width: none;
+  }
+
+  .ant-modal-content {
+    height: 100%;
+    .displayFlex();
+    .flexColumn();
+  }
+
+  .ant-modal-body {
+    // max-height: none;
+    // overflow: visible;
+    // todo 之前的两行的使用场景
+    overflow-y: scroll;
+    .flexLengthResponsive();
+  }
+}
+
+// 抽屉
+.my-drawer {
+  .ant-drawer-body {
+    padding: @btnGutter @btnGutter @btnGutter @btnGutter;
+    margin-bottom: 56px;
+    overflow-y: scroll; // fix firefox 
+  }
+
+  .my-drawer-footer {
+    padding: 12px @btnGutter;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid #f0f0f0;
+    text-align: left;
+  }
+
+  .ant-drawer-header {
+    padding-left: @btnGutter;
+  }
+
+  .ant-drawer-footer {
+    padding: 12px @btnGutter;
+  }
+
+  .ant-spin-spinning {
+    position: relative;
+    left: 50%;
+    margin-left: -14px;
+    top: 40%;
+  }
+}
+
+// 表格
+.row-odd {
+  background: @tableRowOddBackgroundColor;
+
+  .ant-table-cell-fix-left,
+  .ant-table-cell-fix-right { // todo 写它干啥的呢
+    background: @tableRowOddBackgroundColor;
+  }
+}
+
+.my-small-table {
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    padding-left: @btnGutter !important;
+    padding-right: 0 !important;
+  }
+
+  .ant-table-expanded-row > td,
+  .ant-table-expanded-row:hover > td {
+    background: #fff;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .ant-table-tbody > .ant-table-expanded-row > td {
+    padding-left: 0 !important;
+  }
+
+  .my-expanded-row {
+    .ant-table {
+      margin: @btnGutter !important;
+      padding: 0 !important;
+      border: 1px dashed #000;
+    }
+
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      font-size: 12px;
+      line-height: 22px;
+    }
+  }
+
+}
+
+.my-small-edit-table {
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    padding: 4px 0 4px 4px !important;
+  }
+
+  .editable-btns {
+    height: 32px;
+    line-height: 32px;
+  }
+}
+
+// 左右布局方式
+.my-box {
+  position: relative;
+  height: 100%;
+
+  .my-left-box {
+    position: absolute; // todo 脱离文档流
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+
+    background: #fff;
+    border-radius: 2px;
+  }
+
+  .my-right-box {
+    height: 100%; // todo 高度不写就是它自身的高度撑起来的
+    margin-left: 300 + @sectionGutter; // TODO 1.用子元素的margin实现
+
+    background: #fff;
+    border-radius: 2px;
+  }
+}
+
+// 上下布局方式
+.my-container {
+  padding-top: 32 + 2*@btnGutter; // TODO 2.用父元素的padding实现
+  position: relative;
+  height: 100%;
+
+  .my-top-container {
+    position: absolute;
+    left: @btnGutter;
+    right: @btnGutter;
+    top: @btnGutter;
+    width: auto !important; // 针对搜索框
+  }
+
+  .my-bottom-container {
+    height: 100%;
+    overflow-y: scroll; // todo 写在父元素控制子元素的显式方式
+
+    border-top: 1px dashed #f0f0f0;
+    padding: @btnGutter;
+  }
+}

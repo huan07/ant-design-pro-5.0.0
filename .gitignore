@@ -1,0 +1,10 @@
+node_modules
+dist
+
+**/.DS_Store
+.idea
+
+yarn-error.log
+
+# 是否需要添加呢
+src/.umi/
